@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo_data.mapper.TeacherMapper">
+    <resultMap id="TeacherMapper" type="com.example.demo_data.entity.Teacher">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="user_id" column="user_id"/>
+    </resultMap>
+    <select id="findAll" resultMap="TeacherMapper">
+        select * from data_web.teacher
+    </select>
+    <select id="findIdByName" resultType="Integer">
+        select id from teacher where name =#{name} limit 1
+    </select>
+    <select id="findNameById" resultType="String">
+        select name from teacher where id =#{teacher_id}
+    </select>
+    <select id="findTeacherByUsername" resultMap="TeacherMapper">
+        select * from teacher where name = #{name}
+    </select>
+    <insert id="insect" useGeneratedKeys="true" keyProperty="id">
+        insert into teacher(user_id,name, password) values(#{user_id},#{name},#{password})
+    </insert>
+    <update id="update" parameterType="com.example.demo_data.entity.Teacher">
+        update teacher set password = #{newpassword} where name = #{name}
+    </update>
+
+</mapper>

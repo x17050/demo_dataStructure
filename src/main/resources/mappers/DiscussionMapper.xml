@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo_data.mapper.DiscussionMapper">
+    <!-- Discussion resultMap -->
+    <resultMap id="DiscussionResultMap" type="com.example.demo_data.entity.Discussion">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="publisher_id" property="publisher_id"/>
+        <result column="answer_id" property="answer_id"/>
+    </resultMap>
+    <insert id="insect" parameterType="com.example.demo_data.entity.Discussion">
+        insert into data_web.discussion(title,content,publisher_id) values (#{title},#{content},#{publisher_id})
+    </insert>
+    <insert id="insert" parameterType="com.example.demo_data.entity.Discussion">
+        insert into data_web.discussion(title, content, publisher_id, answer_id) values (#{title},#{content},#{publisher_id},#{answer_id})
+    </insert>
+    <select id="findy" resultMap="DiscussionResultMap">
+        select * from data_web.discussion
+    </select>
+    <select id="findTitleById" resultType="String">
+        select title from data_web.discussion where id = #{id}
+    </select>
+    <delete id="delete_comment" parameterType="com.example.demo_data.entity.Discussion">
+        delete from discussion where id = #{id}
+    </delete>
+    <delete id="delete_discussion" parameterType="com.example.demo_data.entity.Discussion">
+        delete from discussion where title = #{title}
+    </delete>
+    <select id="findContentById" resultType="String">
+        select content from data_web.discussion where id = #{id}
+    </select>
+    <update id="editcomment" parameterType="com.example.demo_data.entity.Discussion">
+        update discussion set content = #{content} where content = #{oldcontent}
+    </update>
+</mapper>

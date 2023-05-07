@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>数据结构在线学习系统 - 登录</title>
+  <style>
+    body {
+      background-image: url("./img/backgound.png");
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #login-box {
+      margin: 0 auto;
+      width: 400px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+    }
+
+    #login-box h1 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    #login-form label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    #login-form input[type="text"],
+    #login-form input[type="password"],
+    #login-form select {
+      width: 100%;
+      height: 40px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+
+    #login-form button[type="submit"] {
+      display: block;
+      width: 100%;
+      height: 40px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #login-form button[type="submit"]:hover {
+      background-color: #0062cc;
+    }
+
+    #register-link {
+      display: block;
+      text-align: center;
+      font-size: 16px;
+      color: #007bff;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+
+    #register-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div id="login-box">
+  <h1>数据结构在线学习系统</h1>
+  <form id="login-form">
+    <label for="username">账号：</label>
+    <input type="text" id="username" name="username" required><br>
+    <label for="password">密码：</label>
+    <input type="password" id="password" name="password" required><br>
+    <label for="role">身份：</label>
+    <select id="role" name="role" required>
+      <option value="">请选择身份</option>
+      <option value="student">学生</option>
+      <option value="teacher">教师</option>
+    </select><br>
+    <button type="submit" id="btn-log">登录</button>
+  </form>
+  <a id="register-link" href="register.html">还没有账号？点击这里注册</a>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $("#btn-log").on("click",function (event) {
+    event.preventDefault();
+    $(this).prop("disabled", true);
+    $.ajax({
+      url: "/users/login",
+      type: "GET",
+      data: $("#login-form").serialize(),
+      dataType: "JSON",
+      success: function (json) {
+        if (json.state == 200) {
+          alert("登录成功");
+          if (json.data.role == "student") {
+            window.location.href = "student-index.html";
+          } else if (json.data.role == "teacher") {
+            window.location.href = "teacher-index.html";
+          }
+        } else alert("登录失败");
+        $("#btn-log").prop("disabled", false);
+        }, error: function (xhr) {
+        alert("登录时产生未知的错误!" + xhr.status);
+        $("#btn-log").prop("disabled", false);
+      }
+    });
+});
+</script>
+</html>

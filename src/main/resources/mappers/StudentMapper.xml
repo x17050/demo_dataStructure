@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo_data.mapper.StudentMapper">
+
+    <resultMap id="StudentMapper" type="com.example.demo_data.entity.Student">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="password" column="password"/>
+        <result property="user_id" column="user_id"/>
+        <result property="processing" column="processing"/>
+        <result property="ad" column="ad"/>
+    </resultMap>
+    <select id="findById" resultMap="StudentMapper">
+        select * from student where id = #{id}
+    </select>
+    <select id="findIdByName" resultType="int">
+        select id from student where name = #{name}
+    </select>
+    <select id="findProcessingByName" resultType="int">
+        select processing from student where name = #{name}
+    </select>
+    <insert id="insect" useGeneratedKeys="true" keyProperty="id">
+        insert into student(user_id,name, password,processing
+        ) values(#{user_id},#{name},#{password},#{processing})
+    </insert>
+    <update id="updateStudent" parameterType="com.example.demo_data.entity.Student">
+        UPDATE student SET name = #{name}, password = #{password}, user_id = #{user_id}, processing = #{processing}, ad = #{ad} WHERE id = #{id}
+    </update>
+    <update id="updata" parameterType="com.example.demo_data.entity.Student">
+        update student set processing=#{processing} where student.id =#{studentId}
+    </update>
+    <update id="update" parameterType="com.example.demo_data.entity.Student">
+        update student set data_web.student.password=#{newpassword} where student.name =#{name}
+    </update>
+    <update id="updataAd" parameterType="com.example.demo_data.entity.Student">
+        update student set data_web.student.ad=#{ad} where student.name =#{name}
+    </update>
+</mapper>

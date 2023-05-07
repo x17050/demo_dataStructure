@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo_data.mapper.LearningMaterialMapper">
+
+    <!-- LearningMaterial resultMap -->
+    <resultMap id="LearningMaterialResultMap" type="com.example.demo_data.entity.LearningMaterial">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="content" property="content"/>
+    </resultMap>
+    <insert id="save" parameterType="com.example.demo_data.entity.LearningMaterial">
+        insert into learning_material(name,type,content,uploader_id,upload_time) values (#{name},#{type},#{content},#{uploader_id},#{upload_time})
+    </insert>
+    <select id="findByUploaderId" parameterType="com.example.demo_data.entity.LearningMaterial" resultMap="LearningMaterialResultMap">
+        select * from learning_material where uploader_id = #{teacherId}
+    </select>
+</mapper>

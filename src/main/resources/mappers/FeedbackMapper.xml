@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo_data.mapper.FeedbackMapper">
+
+    <!-- Feedback resultMap -->
+    <resultMap id="FeedbackResultMap" type="com.example.demo_data.entity.Feedback">
+        <id column="id" property="id"/>
+        <result column="content" property="content"/>
+        <result column="feedback_time" property="feedback_time"/>
+        <result column="feedbacker_id" property="feedbacker_id"/>
+    </resultMap>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into data_web.feedback(content) values (#{content})
+    </insert>
+</mapper>

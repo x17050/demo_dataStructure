@@ -1,0 +1,294 @@
+/* 整个页面的基本样式 */
+body {
+	margin: 0;
+	padding: 0;
+}
+
+/* 头部导航栏样式 */
+header {
+	background-color: #fff;
+	padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.logo {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.user-info {
+	display: flex;
+	align-items: center;
+}
+
+.username {
+	margin-right: 20px;
+}
+
+/* 边部导航栏样式 */
+.sidebar {
+	background-color: #333;
+	height: 100%;
+	width: 200px;
+	position: fixed;
+	top: 60px;
+	left: 0;
+	color: #fff;
+}
+
+.sidebar ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.sidebar li {
+	padding: 10px;
+}
+
+.sidebar a {
+	color: #fff;
+	text-decoration: none;
+}
+
+/* 边部导航栏选中样式 */
+.sidebar .active {
+	background-color: #00bcd4;
+}
+
+/* 主体内容样式 */
+main {
+	margin-top: 80px;
+	margin-left: 220px;
+	padding: 20px;
+}
+
+/* 登出按钮样式 */
+.logout-btn {
+	background-color: #555;
+	color: #fff;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+
+.logout-btn:hover {
+	background-color: #555;
+}
+
+.logout-btn:focus {
+	outline: none;
+}
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px;
+}
+/*查看作业功能*/
+
+.current-assignment, .assignment-history {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.current-assignment h2, .assignment-history h2 {
+  margin-bottom: 10px;
+}
+
+#current-assignment-list, #assignment-history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#current-assignment-list li, #assignment-history-list li {
+  margin-bottom: 10px;
+}
+
+#current-assignment-list li span, #assignment-history-list li span {
+  font-weight: bold;
+}
+
+#current-assignment-list li .score, #assignment-history-list li .score {
+  margin-left: 10px;
+  color: green;
+}
+
+#assignment-history-list li .status {
+  margin-left: 10px;
+  color: blue;
+}
+
+#assignment-history-list li .grade {
+  margin-left: 10px;
+  color: red;
+}
+/*提交作业*/
+.sh-content {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.assignment-details,
+.submit-assignment {
+	width: 100%;
+	max-width: 600px;
+	padding: 20px;
+	margin: 20px 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.assignment-details h2,
+.submit-assignment h2 {
+	margin: 0;
+	font-size: 24px;
+}
+
+.assignment-details p,
+.submit-assignment p {
+	margin: 10px 0;
+	font-size: 16px;
+}
+
+.assignment-details ul,
+.submit-assignment form {
+	margin: 10px 0;
+}
+
+.assignment-details li,
+.submit-assignment .form-group {
+	margin: 10px 0;
+}
+
+.assignment-details li span {
+	font-weight: bold;
+}
+
+.submit-assignment label {
+	font-size: 16px;
+}
+
+.submit-assignment textarea {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.submit-assignment button {
+	display: block;
+	margin: 20px 0 0;
+	padding: 10px 20px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.submit-assignment button:hover {
+	background-color: #0069d9;
+}
+
+
+/*学习数据结构*/
+.course-content {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.progress-bar {
+	width: 100%;
+	height: 20px;
+	background-color: #f2f2f2;
+}
+
+.progress {
+	height: 100%;
+	background-color: #4CAF50;
+}
+
+
+
+/*讨论*/
+
+.discussion-board {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.discussion {
+	margin: 50px auto;
+	max-width: 800px;
+	text-align: center;
+}
+
+#discussion-title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+#discussion-content {
+	font-size: 16px;
+	line-height: 1.5;
+	margin-bottom: 40px;
+}
+
+#comment-list {
+	margin-bottom: 40px;
+	text-align: left;
+}
+
+#comment-list li {
+	margin-bottom: 20px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+	text-align: left;
+}
+
+label {
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	text-align: left;
+}
+
+input[type="text"],
+textarea {
+	display: block;
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	line-height: 1.5;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+#submit-btn {
+	display: block;
+	margin: 0 auto;
+	padding: 10px 20px;
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	background-color: #007bff;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+}
+/*反馈*/
+
+
+
+/*个人中心*/

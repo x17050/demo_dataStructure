@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+	<title>教师端主页面</title>
+	<link rel="icon" href="/img/login.png"/>
+	<link rel="stylesheet" type="text/css" href="css/teacher-index.css">
+</head>
+<body>
+	<!-- 头部导航栏 -->
+	<header>
+		<div class="logo">数据结构在线学习系统</div>
+		<div class="user-info">
+			<span class="username">欢迎，{username}</span>
+			<button class="logout-btn" id="logout-btntea">退出登录</button>
+		</div>
+	</header>
+
+	<!-- 边部导航栏 -->
+	<nav class="sidebar">
+		<ul>
+			<li class="active" data-content="welcome"><a href="#">欢迎使用</a></li>
+			<li data-content="learn_data"><a href="#">学习数据结构</a></li>
+			<li data-content="set_homework"><a href="#">布置作业</a></li>
+			<li data-content="check_homework"><a href="#">批改作业</a></li>
+			<li data-content="choose_good"><a href="#">评选优秀学生</a></li>
+			<li data-content="discussion_tea"><a href="#">讨论</a></li>
+			<li data-content="question_tea"><a href="#">问题反馈</a></li>
+			<li data-content="person_center"><a href="#">个人中心</a></li>
+		</ul>
+	</nav>
+
+	<!-- 主体内容 -->
+	<main>
+		<div class="main-content" id="welcome">
+			<h1>欢迎使用数据结构在线学习系统!</h1>
+		</div>
+		<div class="main-content" id="learn_data" style="display:none;">
+			<div class="center_l">
+			  <div class="study-progress">
+			    <h2>学生学习进度</h2>
+			    <table>
+			      <thead>
+			        <tr>
+			          <th>学生姓名</th>
+			          <th>学习进度</th>
+			          <th>操作</th>
+			        </tr>
+			      </thead>
+			      <tbody id="progress-list">
+			        <!-- 学生学习进度列表将通过 JavaScript 动态生成 -->
+			      </tbody>
+			    </table>
+			  </div>
+			  <div class="study-materials">
+			    <h2>学习资料</h2>
+			    <div class="section-list">
+			      <h3>章节列表</h3>
+			      <ul id="section-list"></ul>
+			    </div>
+			    <div class="section-detail">
+			      <h3>章节详情</h3>
+			      <div id="section-detail"></div>
+			    </div>
+			  </div>
+			  <div class="study-materials-upload">
+			    <h2>上传学习资料</h2>
+			    <form id="upload-form">
+			      <div class="form-group">
+			        <label for="title">资料标题：</label>
+			        <input type="text" id="title_1" name="title" required>
+			      </div>
+			      <div class="form-group">
+			        <label for="description">资料描述：</label>
+			        <textarea  id="description" name="description" rows="6" required></textarea>
+			      </div>
+			      <div class="form-group">
+			        <label for="file">选择文件：</label>
+			        <input type="file" id="file" name="file" required>
+			      </div>
+			      <button type="submit" id="submit-btn_1">上传资料</button>
+			    </form>
+			  </div>
+			</div>
+		</div>
+		<div class="main-content" id="set_homework" style="display: none;">
+			<div class="center_s">
+			  <h2>布置作业</h2>
+			  <form id="assignment-form">
+			    <div class="form-group">
+			      <label for="title">作业标题：</label>
+			      <input type="text" id="title_2" name="title" required>
+			    </div>
+			    <div class="form-group">
+			      <label for="content">作业内容：</label>
+			      <textarea id="content_1" name="content" rows="6" required></textarea>
+			    </div>
+			    <div class="form-group">
+			      <label for="deadline">截止时间：</label>
+			      <input type="datetime-local" id="deadline" name="deadline" required>
+			    </div>
+			    <div class="form-group">
+			      <label for="total_score">作业总分：</label>
+			      <input type="number" id="total_score" name="total-score" min="1" required>
+			    </div>
+			    <button type="submit" id="submit_btn_2">发布作业</button>
+			  </form>
+			  <div class="history-assignments">
+			    <h3>历史布置作业</h3>
+			    <ul id="assignments-list_1"></ul>
+			  </div>
+			</div>
+		</div>
+		<div class="main-content" id="check_homework" style="display: none;">
+			<div class="center_c">
+		  <div class="student-assignments">
+		    <h2>学生提交作业列表</h2>
+		    <ul id="assignments-list"></ul>
+		  </div>
+				<div class="grade-assignments" style="display:none;">
+					<h2>批改作业</h2>
+					<form id="grade-form">
+						<div class="form-group">
+							<label for="title">老师布置作业id：</label>
+							<span id="assignment-title"></span>
+						</div>
+						<div class="form-group">
+							<label for="content">作业内容：</label>
+							<pre id="assignment-content"></pre>
+						</div>
+						<div class="form-group">
+							<label for="submit-time">提交时间：</label>
+							<span id="submit-time"></span>
+						</div>
+						<div class="form-group">
+							<label for="student-id">学生id:</label>
+							<span id="student-id"></span>
+						</div>
+						<div class="form-group">
+							<label for="grade">得分：</label>
+							<input type="number" id="grade" name="grade" min="0" max="100" required>
+						</div>
+						<button type="submit" id="submit-btn_3">提交成绩</button>
+					</form>
+				</div>
+
+			</div>
+		</div>
+		<div class="main-content" id="choose_good" style="display:none;">
+			<div class="chapter-scores">
+			    <h2>章节成绩</h2>
+			    <table>
+			      <thead>
+			        <tr>
+			          <th>学生姓名</th>
+			          <th>第一章</th>
+			          <th>第二章</th>
+			          <th>第三章</th>
+			          <th>第四章</th>
+			          <th>第五章</th>
+			        </tr>
+			      </thead>
+			      <tbody id="score-list">
+			        <!-- 学生章节成绩将通过 JavaScript 动态生成 -->
+			      </tbody>
+			    </table>
+			  </div>
+			  <div class="select-outstanding">
+			    <h2>评选优秀学生</h2>
+			    <form id="select-form">
+			      <div class="form-group">
+			        <label for="student-select">选择学生：</label>
+			        <select id="student-select" name="student-select">
+			          <!-- 学生列表将通过 JavaScript 动态生成 -->
+			        </select>
+			      </div>
+			      <button type="submit" id="submit-btn_5">选择为优秀学生</button>
+			    </form>
+			</div>
+		</div>
+		<div class="main-content" id="discussion_tea" style="display:none;">
+			<div class = "center_k">
+		    <div class="create-discussion">
+		      <h2>发布讨论</h2>
+		      <form id="discussion-form">
+		        <div class="form-group">
+		          <label for="title">标题：</label>
+		          <input type="text" id="title" name="title" required>
+		        </div>
+		        <div class="form-group">
+		          <label for="content">内容：</label>
+		          <textarea id="content" name="content" rows="5" required></textarea>
+		        </div>
+		        <button type="submit" id="submit-btn_4">发布讨论</button>
+		      </form>
+		    </div>
+		  
+		    <div class="student-discussions">
+		      <h2>讨论列表</h2>
+		      <ul id="discussion-list">
+		        <!-- 讨论将通过 JavaScript 动态生成 -->
+		      </ul>
+		    </div>
+		  
+		    <div class="delete-discussion">
+		      <h2>删除讨论</h2>
+		      <form id="delete-form">
+		        <div class="form-group">
+		          <label for="discussion-select">选择讨论：</label>
+		          <select id="discussion-select" name="discussion-select">
+		            <!-- 讨论列表将通过 JavaScript 动态生成 -->
+		          </select>
+		        </div>
+		        <button type="submit" id="submit-btn_6">删除讨论</button>
+		      </form>
+		    </div>
+		  
+		    <div class="correct-comment">
+		      <h2>纠错</h2>
+		      <form id="correct-form">
+		        <div class="form-group">
+		          <label for="comment-select">选择评论：</label>
+		          <select id="comment-select" name="comment-select">
+		            <!-- 评论列表将通过 JavaScript 动态生成 -->
+		          </select>
+		        </div>
+		        <div class="form-group">
+		          <label for="corrected-comment">纠正后的评论：</label>
+		          <textarea id="corrected-comment" name="corrected-comment" rows="5" required></textarea>
+		        </div>
+		        <button type="submit" id="submit-btn_7">提交纠正</button>
+		      </form>
+		    </div>
+			</div>
+		</div>
+		<div class="main-content" id="question_tea" style="display:none;">
+		  <!-- 问题反馈页面的内容 -->
+		    <div class="feedback-form">
+		      <h2>反馈问题</h2>
+		      <form id="feedback-form">
+		        <div class="form-group">
+		          <label for="input-problem">输入问题：</label>
+		          <input type="text" id="input-problem" name="input-problem" required>
+		        </div>
+		        <div class="form-group">
+		          <label for="problem-description">问题描述：</label>
+		          <textarea id="problem-description" name="problem-description" rows="5" required></textarea>
+		        </div>
+		        <div class="form-group">
+		          <label for="problem-type">问题类型：</label>
+		          <select id="problem-type" name="problem-type">
+		            <option value="technical">技术问题</option>
+		            <option value="functional">功能问题</option>
+		            <option value="other">其他问题</option>
+		          </select>
+		        </div>
+		        <div class="form-group">
+		          <label for="name">姓名：</label>
+		          <input type="text" id="name" name="name" required>
+		        </div>
+		        <div class="form-group">
+		          <label for="email">邮箱：</label>
+		          <input type="email" id="email" name="email" required>
+		        </div>
+		        <button type="submit" id="submit-btn">提交问题</button>
+		      </form>
+		    </div>
+		</div>
+		<div class="main-content" id="person_center" style="display:none;">
+		  <!-- 个人中心页面的内容 -->
+		  <div class="user-profile">
+		    <h2>个人中心</h2>
+		    <div class="profile-info">
+		      <p>姓名：张三</p>
+		      <p>邮箱：zhangsan@example.com</p>
+		    </div>
+		    <h3>更改密码</h3>
+		    <form id="change-password-form">
+		      <div class="form-group">
+		        <label for="old-password">旧密码：</label>
+		        <input type="password" id="old-password" name="old-password" required>
+		      </div>
+		      <div class="form-group">
+		        <label for="new-password">新密码：</label>
+		        <input type="password" id="new-password" name="new-password" required>
+		      </div>
+		      <div class="form-group">
+		        <label for="confirm-password">确认密码：</label>
+		        <input type="password" id="confirm-password" name="confirm-password" required>
+		      </div>
+		      <button type="submit" id="change-password-btn">保存</button>
+		    </form>
+		  </div>
+
+		</div>
+
+	</main>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/teacher-index.js"></script>
+	<script src="js/set_homework.js"></script>
+	<script src="js/learn_data.js"></script>
+	<script src="js/check_homework.js"></script>
+	<script src="js/choose_good.js"></script>
+	<script src="js/disscussion_tea.js"></script>
+	<script src="js/question.js"></script>
+	<script src="js/center.js"></script>
+</body>
+</html>
+
+
+

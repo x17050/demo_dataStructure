@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo_data.mapper.HomeworkMapper">
+
+    <!-- Homework resultMap -->
+    <resultMap id="HomeworkResultMap" type="com.example.demo_data.entity.Homework">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="content" property="content"/>
+        <result column="deadline" property="deadline"/>
+        <result column="score" property="score"/>
+        <result column="teacher_id" property="teacher_id"/>
+    </resultMap>
+    <insert id="insect" parameterType="com.example.demo_data.entity.Homework">
+        insert into data_web.homework(name,content,deadline,score,teacher_id) values (#{name},#{content},#{deadline},#{score},#{teacher_id})
+    </insert>
+    <select id="findByTeacherId" resultType="integer">
+        SELECT id FROM data_web.homework WHERE teacher_id = #{teacher_id}
+    </select>
+    <select id="findById" resultMap="HomeworkResultMap">
+        select * from data_web.homework where id = #{homework_id}
+    </select>
+    <select id="findHomeworkByTeacherId" resultType="int">
+        select id from data_web.homework where teacher_id =#{teacher_id}
+    </select>
+</mapper>

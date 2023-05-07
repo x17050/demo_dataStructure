@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+	<title>学生端主页面</title>
+	<link rel="stylesheet" type="text/css" href="css/teacher-index.css">
+	<link rel="stylesheet" type="text/css" href="css/student-index.css">
+</head>
+<body>
+	<!-- 头部导航栏 -->
+	<header>
+		<div class="logo">数据结构在线学习系统</div>
+		<div class="user-info">
+			<span class="username">欢迎，{username}同学</span>
+			<button class="logout-btn" id="logout-btn">退出登录</button>
+		</div>
+	</header>
+	<nav class="sidebar">
+		<ul>
+			<li class="active" data-content="welcome_tea"><a href="#">欢迎使用</a></li>
+			<li data-content="view-homework"><a href="#">查看作业</a></li>
+			<li data-content="submit-homework"><a href="#">提交作业</a></li>
+			<li data-content="learn_data_st"><a href="#">学习数据结构</a></li>
+			<li data-content="discussion"><a href="#">讨论</a></li>
+			<li data-content="feedback"><a href="#">问题反馈</a></li>
+			<li data-content="personal-center"><a href="#">个人中心</a></li>
+		</ul>
+	</nav>
+	<main>
+		<div class="main-content" id="welcome_tea">
+			<h1>欢迎使用数据结构在线学习系统</h1>
+		</div>
+		<div class="main-content" id="view-homework" style="display: none;">
+			<div class="current-assignment">
+			    <h2>当前作业</h2>
+			    <ul id="current-assignment-list"></ul>
+			</div>
+			<div class="assignment-history">
+			    <h2>历史作业</h2>
+			    <ul id="assignment-history-list"></ul>
+			</div>
+
+		</div>
+		<div class="main-content" id="submit-homework" style="display: none;">
+		
+		  <div class="assignment-details">
+		    <h2>作业详情</h2>
+		    <div id="assignment-details-container">
+				<ul id="assignment-list"></ul>
+		    </div>
+		  </div>
+		  <div class="submit-assignment">
+		    <h2>提交作业</h2>
+		    <form id="submit-assignment-form">
+		      <div class="form-group">
+		        <label for="assignment-content">作业内容：</label>
+		        <textarea id="assignment-content" name="assignment-content" rows="6" required></textarea>
+		      </div>
+		      <button type="submit" id="submit-btn_1">提交作业</button>
+		    </form>
+		  </div>
+		
+
+		</div>
+		<div class="main-content" id="learn_data_st">
+			<div class="course-content">
+				<h2 id="course-name">课程名称</h2>
+				<div class="course-info">
+					<p>课程编号：<span id="course-id"></span></p>
+					<p>教师：<span id="course-teacher"></span></p>
+				</div>
+				<div class="course-structure">
+					<h3>课程内容</h3>
+					<ul id="course-structure-list">
+					</ul>
+					<div class="chapter-detail" id="chapter-detail"></div>
+				</div>
+				<div class="materials-downloads">
+					<h3>资料下载</h3>
+					<ul id="downloads-list">
+					</ul>
+				</div>
+				<div class="course-progress">
+					<div class="chapter-list">
+						<h4>章节目录</h4>
+						<ul id="chapter-list">
+						</ul>
+					</div>
+					<h3>学习进度</h3>
+					<p>已完成：<span id="progress-percent">0</span>%</p>
+					<div class="progress-bar">
+						<div class="progress" id="progress" style="width:0%;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="main-content" id="discussion" style="display:none;">
+			<div class="discussion-board">
+				<h2>讨论板块</h2>
+				<ul id="discussion-list">
+				</ul>
+			</div>
+
+			<div class="discussion">
+				<h2 id="discussion-title">这里显示讨论的标题</h2>
+				<p id="discussion-content">这里显示讨论的内容</p>
+				<ul id="comment-list">
+					<!-- 这里通过 JavaScript 动态生成现有的评论列表 -->
+				</ul>
+				<form id="comment-form" style="display: none">
+					<h3>发表评论</h3>
+					<div class="form-group">
+						<label for="comment-name">学号：</label>
+						<input type="text" id="comment-name" name="comment-name" required>
+					</div>
+					<div class="form-group">
+						<label for="comment-content">评论内容：</label>
+						<textarea id="comment-content" name="comment-content" rows="5" required></textarea>
+					</div>
+					<button type="submit" id="submit-btn_2">发表评论</button>
+				</form>
+			</div>
+		</div>
+		<div class="main-content" id="feedback" style="display:none;">
+			<!-- 问题反馈页面的内容 -->
+			<div class="feedback-form">
+				<h2>反馈问题</h2>
+				<form id="feedback-form">
+					<div class="form-group">
+						<label for="input-problem">输入问题：</label>
+						<input type="text" id="input-problem" name="input-problem" required>
+					</div>
+					<div class="form-group">
+						<label for="problem-description">问题描述：</label>
+						<textarea id="problem-description" name="problem-description" rows="5" required></textarea>
+					</div>
+					<div class="form-group">
+						<label for="problem-type">问题类型：</label>
+						<select id="problem-type" name="problem-type">
+							<option value="technical">技术问题</option>
+							<option value="functional">功能问题</option>
+							<option value="other">其他问题</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="name">姓名：</label>
+						<input type="text" id="name" name="name" required>
+					</div>
+					<div class="form-group">
+						<label for="email">邮箱：</label>
+						<input type="email" id="email" name="email" required>
+					</div>
+					<button type="submit" id="submit-btn">提交问题</button>
+				</form>
+			</div>
+		</div>
+		<div class="main-content" id="personal-center" style="display:none;">
+			<!-- 个人中心页面的内容 -->
+			<div class="user-profile">
+				<h2>个人中心</h2>
+				<div class="profile-info">
+					<p>姓名：{username}</p>
+					<p>邮箱：{eamil}</p>
+				</div>
+				<h3>更改密码</h3>
+				<form id="change-password-form">
+					<div class="form-group">
+						<label for="old-password">旧密码：</label>
+						<input type="password" id="old-password" name="old-password" required>
+					</div>
+					<div class="form-group">
+						<label for="new-password">新密码：</label>
+						<input type="password" id="new-password" name="new-password" required>
+					</div>
+					<div class="form-group">
+						<label for="confirm-password">确认密码：</label>
+						<input type="password" id="confirm-password" name="confirm-password" required>
+					</div>
+					<button type="submit" id="change-password-btn">保存</button>
+				</form>
+			</div>
+
+		</div>
+
+	</main>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="js/student-index.js"></script>
+	<script src="js/view_homework.js"></script>
+	<script src="js/submit_homework.js"></script>
+	<script src="js/discusion_stu.js"></script>
+	<script src="js/learn_stu.js"></script>
+	<script src="js/question.js"></script>
+	<script src="js/center.js"></script>
+</body>
+</html>

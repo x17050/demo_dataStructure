@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo_data.mapper.StudentHomeworkMapper">
+    <!-- StudentHomework resultMap -->
+    <resultMap id="StudentHomeworkResultMap" type="com.example.demo_data.entity.StudentHomework">
+        <id column="student_id" property="student_id"/>
+        <result column="homework_id" property="homework_id"/>
+        <result column="submit_time" property="submit_time"/>
+        <result column="status" property="status"/>
+        <result column="score" property="score"/>
+    </resultMap>
+    <select id="findById" resultMap="StudentHomeworkResultMap">
+        select * from student_homework where homework_id = #{homework_id}
+    </select>
+    <update id="updata" parameterType="com.example.demo_data.entity.StudentHomework">
+        UPDATE student_homework SET score = #{score} WHERE student_id = #{student_id} AND homework_id = #{homework_id}
+    </update>
+    <select id="findHomeworkByStudentId" resultType="int">
+        select homework_id from student_homework where student_id = #{student_id}
+    </select>
+    <insert id="insect" parameterType="com.example.demo_data.entity.StudentHomework">
+        insert into data_web.student_homework(student_id,homework_id,status,submit_time) values (#{student_id},#{homework_id},#{status},CURRENT_TIMESTAMP)
+    </insert>
+</mapper>

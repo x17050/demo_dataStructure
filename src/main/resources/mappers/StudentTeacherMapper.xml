@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo_data.mapper.StudentTeacherMapper">
+    <resultMap id="StudentTeacherMapper" type="com.example.demo_data.entity.Student_Teacher">
+        <id property="id" column="id"></id>
+        <result property="student_id" column="student_id"></result>
+        <result property="teacher_id" column="teacher_id"></result>
+    </resultMap>
+    <delete id="clear" parameterType="com.example.demo_data.entity.Student_Teacher">
+        delete from student_teacher
+    </delete>
+    <insert id="insert" parameterType="com.example.demo_data.entity.Student_Teacher">
+        insert into student_teacher(student_id,teacher_id)
+        values (#{student_id},#{teacher_id})
+    </insert>
+    <select id="findByTeacherId" resultType="Integer">
+        SELECT student_id FROM student_teacher WHERE teacher_id = #{teacher_id}
+    </select>
+<!--
+    <update id="update" parameterType="com.example.demo_data.entity.Student_Teacher">
+        update student_teacher set student_id=#{student_id}, teacher_id=#{teacher_id}
+        where id=#{id}
+    </update>
+-->
+    <select id="findById" resultMap="StudentTeacherMapper">
+        select * from student_teacher where id=#{id}
+    </select>
+
+    <select id="getRandomTeacherId" resultType="int">
+        select teacher_id from student_teacher order by rand() limit 1
+    </select>
+    <select id="findTeacherByStudentId" resultType="int">
+        select teacher_id from student_teacher where student_id = #{student_id}
+    </select>
+</mapper>
